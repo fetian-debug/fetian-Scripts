@@ -1,0 +1,15 @@
+#!/bin/sh
+# simple dmenu radio menu
+# not working
+
+DMENU='dmenu -i -fn IBMPlexMono:semibold:size=12 -nb #000000 -p Radio:'
+choice=$(echo -e "Makkah\nEl-madina\nMusic\nNews\nSports\njazeera" | $DMENU)
+
+case "$choice" in
+	Makkah) makkah ;;
+	El-Madina) madina ;;
+	Music) music ;;
+	News) news ;;
+	Sports) sports ;;
+	jazeera) jazeera  ;;
+esac

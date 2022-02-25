@@ -1,0 +1,12 @@
+#!/bin/bash 
+IP_MSG="charge battary 10%"
+STATUS=$? 
+
+if [ $STATUS -ne 0 ]; then
+    MESSAGE="Error Occurred! [ $IP_MSG ]"
+    zenity --notification --window-icon=error --text="hello $MESSAGE"
+else
+    MESSAGE="My Public IP: $IP_MSG"
+    zenity --info --text="$MESSAGE"
+fi
+echo $MESSAGE

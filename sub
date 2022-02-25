@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Put the correct paths to your programs here:
+SUB2PO=/usr/bin/sub2po
+PO2SUB=/usr/bin/po2sub
+POMTRANS=/opt/pology/bin/pomtrans
+APERTIUM=/usr/local/bin/apertium
+
+# You shouldn't have to change anything below this line
+
+if [ $# -ne 3 ]; then
+    echo "Usage: bash $0 mode input.srt output.srt";
+    echo "Example: bash $0 es-ca_valencia mymovie.es.srt mymovie.ca.srt";
+    exit 1;
+fi
+
+mode="$1";
+insub="$2";
+outsub="$3";
+
+pofile=$(mktemp -t $mode.XXXXXXXXXX.po);
+
+echo "Converting to po..."
+$SUB2PO -i "$insub" -o "$pofile"
+
+echo "Translating..."
+$POMTRANS -s src -t trg -M "$mode" -T $APERTIUM apertium $pofile
+# The -s and -t don't actually matter since we override them with -M, 
+# they just have to be non-empty.
+
+echo "Converting back from po..."
+$PO2SUB --fuzzy -t "$insub" -i $pofile -o "$outsub"
+# Since pomtrans marked everything as fuzzy, tell po2sub to include fuzzy
