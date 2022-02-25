@@ -1,0 +1,5 @@
+#!/bin/sh
+#feh --no-fehbg --bg-fill '/home/fetian/.bg/bg.jpg'
+#feh --no-fehbg --bg-fill '/home/fetian/.bg/arch.jpg'
+#Random background image
+feh --no-fehbg --bg-fill --randomize /home/fetian/.bg/wallpapers/*
