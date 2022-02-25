@@ -36,9 +36,9 @@ timer 30 s
 ```
 Time in 50 minutes
 ```sh
-timer 50 m ~/audio/duck_song.mp3
+timer 50 m ~/audio/duck.mp3
 ```
 Time in 2 hours
 ```sh
-timer 2 h ~/audio/duck_song.mp3 hide
+timer 2 h ~/audio/duck.mp3 hide
 ```
